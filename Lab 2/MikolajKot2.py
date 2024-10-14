@@ -1,5 +1,5 @@
 # Funkcja generująca tekst powitania w zależności od wybranego języka
-def tekstPowitania(jezyk):
+def tekstPowitania(język):
     powitania = {
         'pl': 'Cześć!',
         'ru': 'привет!',
@@ -7,12 +7,12 @@ def tekstPowitania(jezyk):
         'fr': 'Bonjour!',
     }
 
-    if jezyk in powitania:
-        return powitania[jezyk]
+    if język in powitania:
+        return powitania[język]
     else:
-        return "Brak jezyka w bazie"
+        return "Nie znam języka: " + język
 
 def powitanie():
-    print(tekstPowitania(input("Podaj język:")))
+    print(tekstPowitania(input("Podaj język: ")))
 
 powitanie()
