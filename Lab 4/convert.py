@@ -35,7 +35,7 @@ def convert_notebook_to_python(input_filename):
     with open(output_filename, 'w', encoding='utf-8') as output_file:
         output_file.write("\n\n".join(converted_cells) + "\n")
 
-    print(f"Liczba ćwiczeń w notebooku: {exercise_count}")
+    print(f"Liczba ćwiczeń: {exercise_count}")
 
 
 if __name__ == '__main__':
