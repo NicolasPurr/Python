@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62fcafeb-a4fa-4e07-8dc9-439ed41bcb02" name="Changes" comment="Lab 6 ćwiczenie wykonane bez Beautiful Soup; dodatkowo rozpoczęto próbę rozwiązania przy zastosowaniu Selenium">
-      <change afterPath="$PROJECT_DIR$/Lab 7/mse_calculator.py" afterDir="false" />
+    <list default="true" id="62fcafeb-a4fa-4e07-8dc9-439ed41bcb02" name="Changes" comment="Lab 7">
+      <change afterPath="$PROJECT_DIR$/Lab 8/pandas_pivot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab 9/visualisation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab 1/estimate_pi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 1/estimate_pi.py" afterDir="false" />
     </list>
@@ -54,6 +55,7 @@
     &quot;Python.activity_log.executor&quot;: &quot;Run&quot;,
     &quot;Python.convert.executor&quot;: &quot;Debug&quot;,
     &quot;Python.estimate_pi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.flashcards.executor&quot;: &quot;Run&quot;,
     &quot;Python.ipynb_to_py.executor&quot;: &quot;Run&quot;,
     &quot;Python.plik.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -74,7 +76,30 @@
       <recent name="C:\Users\mkot2\PycharmProjects\pythonProject\Lab 1" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.flashcards">
+    <configuration name="flashcards" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mine" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mine/flashcards.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Run" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="python convert.py plik.ipynb" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -90,6 +115,11 @@
       <envs />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.flashcards" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -116,7 +146,10 @@
       <workItem from="1731349663978" duration="6235000" />
       <workItem from="1731972821990" duration="1041000" />
       <workItem from="1732056315107" duration="699000" />
-      <workItem from="1732573111478" duration="2201000" />
+      <workItem from="1732573111478" duration="3292000" />
+      <workItem from="1732766682317" duration="2631000" />
+      <workItem from="1733172468934" duration="2880000" />
+      <workItem from="1733783560549" duration="2470000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -190,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732574337722</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Lab 7">
+      <option name="closed" value="true" />
+      <created>1732575585227</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732575585227</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +247,8 @@
     <MESSAGE value="Kosmetyczna zmiana" />
     <MESSAGE value="Lab 5 ćwiczenie wykonane" />
     <MESSAGE value="Lab 6 ćwiczenie wykonane bez Beautiful Soup; dodatkowo rozpoczęto próbę rozwiązania przy zastosowaniu Selenium" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lab 6 ćwiczenie wykonane bez Beautiful Soup; dodatkowo rozpoczęto próbę rozwiązania przy zastosowaniu Selenium" />
+    <MESSAGE value="Lab 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lab 7" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject$plik.coverage" NAME="plik Coverage Results" MODIFIED="1730759068686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 4" />
@@ -214,6 +256,7 @@
     <SUITE FILE_PATH="coverage/pythonProject$MikolajKot2.coverage" NAME="MikolajKot2 Coverage Results" MODIFIED="1728943140191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 2" />
     <SUITE FILE_PATH="coverage/pythonProject$ipynb_to_py.coverage" NAME="ipynb_to_py Coverage Results" MODIFIED="1730758154700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 4" />
     <SUITE FILE_PATH="coverage/pythonProject$activity_log.coverage" NAME="activity_log Coverage Results" MODIFIED="1728943148722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 2" />
+    <SUITE FILE_PATH="coverage/pythonProject$flashcards.coverage" NAME="flashcards Coverage Results" MODIFIED="1733784669293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mine" />
     <SUITE FILE_PATH="coverage/pythonProject$estimate_pi.coverage" NAME="estimate_pi Coverage Results" MODIFIED="1730752606475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 1" />
   </component>
 </project>
