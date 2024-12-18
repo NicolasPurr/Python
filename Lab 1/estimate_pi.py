@@ -1,8 +1,8 @@
 import math
 import random
 
-iterations = int(input("Podaj liczbę iteracji:"))
-step = int(input("Podaj krok:"))
+iterations = int(input("Podaj liczbę iteracji: "))
+step = int(input("Podaj krok: "))
 hits = 0
 
 for i in range(iterations):
