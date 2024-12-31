@@ -4,10 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62fcafeb-a4fa-4e07-8dc9-439ed41bcb02" name="Changes" comment="Lab 8, 9">
-      <change afterPath="$PROJECT_DIR$/Lab 10/gif.py" afterDir="false" />
+    <list default="true" id="62fcafeb-a4fa-4e07-8dc9-439ed41bcb02" name="Changes" comment="Lab 10&#10;Przepraszam za spóźnienie, dużo pracy mi się zebrało :(">
+      <change afterPath="$PROJECT_DIR$/Project/drugs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab 1/estimate_pi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab 1/estimate_pi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/Flashcard App/french_words.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Mine/100daysofpython/Flashcard App/french_words.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/Flashcard App/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mine/100daysofpython/Flashcard App/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/Pomodoro_GUI/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/Pomodoro_GUI/tomato.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/Stock Trading SMS News Alert/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/The Indian State Game/India Coords turtle.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/The Indian State Game/getting mouse click coordinates.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/The Indian State Game/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/Using Dictionaries with functions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/monday_motivation_mail/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/monday_motivation_mail/quotes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/numberguessinggame.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,30 +60,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.MikolajKot2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.activity_log.executor&quot;: &quot;Run&quot;,
-    &quot;Python.convert.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.estimate_pi.executor&quot;: &quot;Run&quot;,
-    &quot;Python.flashcards.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ipynb_to_py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plik.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Shell Script.Run.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mkot2/PycharmProjects/pythonProject&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.MikolajKot2.executor": "Run",
+    "Python.activity_log.executor": "Run",
+    "Python.convert.executor": "Debug",
+    "Python.estimate_pi.executor": "Run",
+    "Python.flashcards.executor": "Run",
+    "Python.ipynb_to_py.executor": "Run",
+    "Python.plik.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Shell Script.Run.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/mkot2/PycharmProjects/pythonProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mkot2\PycharmProjects\pythonProject\Project" />
       <recent name="C:\Users\mkot2\PycharmProjects\pythonProject\Lab 1" />
     </key>
   </component>
@@ -150,7 +163,9 @@
       <workItem from="1733172468934" duration="2880000" />
       <workItem from="1733783560549" duration="2641000" />
       <workItem from="1734389658808" duration="1199000" />
-      <workItem from="1734481233322" duration="1359000" />
+      <workItem from="1734481233322" duration="1491000" />
+      <workItem from="1734483690998" duration="2435000" />
+      <workItem from="1735600382515" duration="3077000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -240,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733786228438</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Lab 10&#10;Przepraszam za spóźnienie, dużo pracy mi się zebrało :(">
+      <option name="closed" value="true" />
+      <created>1734482730219</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1734482730219</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +281,8 @@
     <MESSAGE value="Lab 6 ćwiczenie wykonane bez Beautiful Soup; dodatkowo rozpoczęto próbę rozwiązania przy zastosowaniu Selenium" />
     <MESSAGE value="Lab 7" />
     <MESSAGE value="Lab 8, 9" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lab 8, 9" />
+    <MESSAGE value="Lab 10&#10;Przepraszam za spóźnienie, dużo pracy mi się zebrało :(" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lab 10&#10;Przepraszam za spóźnienie, dużo pracy mi się zebrało :(" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject$plik.coverage" NAME="plik Coverage Results" MODIFIED="1730759068686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 4" />
