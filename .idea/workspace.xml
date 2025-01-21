@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62fcafeb-a4fa-4e07-8dc9-439ed41bcb02" name="Changes" comment="Lab 10&#10;Przepraszam za spóźnienie, dużo pracy mi się zebrało :(">
-      <change afterPath="$PROJECT_DIR$/Project/drugs.py" afterDir="false" />
+    <list default="true" id="62fcafeb-a4fa-4e07-8dc9-439ed41bcb02" name="Changes" comment="Task 1 problem with drugs from pathway being added, Task 2 in progress">
+      <change afterPath="$PROJECT_DIR$/Lab 13/memtest_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab 13/memtest_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab 13/results.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab 13/wersja_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab 13/wersja_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/Flashcard App/french_words.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Mine/100daysofpython/Flashcard App/french_words.csv" afterDir="false" />
@@ -65,15 +69,20 @@
     "Python.MikolajKot2.executor": "Run",
     "Python.activity_log.executor": "Run",
     "Python.convert.executor": "Debug",
+    "Python.csv_to_xls.executor": "Debug",
     "Python.estimate_pi.executor": "Run",
     "Python.flashcards.executor": "Run",
     "Python.ipynb_to_py.executor": "Run",
+    "Python.mem_test.executor": "Run",
     "Python.plik.executor": "Run",
+    "Python.process_ie.executor": "Run",
+    "Python.wersja_1.executor": "Run",
+    "Python.wersja_2.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Shell Script.Run.executor": "Run",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/mkot2/PycharmProjects/pythonProject",
+    "last_opened_file_path": "C:/Users/mkot2/PycharmProjects/pythonProject/Lab 13",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -83,13 +92,16 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mkot2\PycharmProjects\pythonProject\Lab 13" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mkot2\PycharmProjects\pythonProject\Project" />
       <recent name="C:\Users\mkot2\PycharmProjects\pythonProject\Lab 1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.flashcards">
-    <configuration name="flashcards" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.memtest_1">
+    <configuration name="csv_to_xls" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -103,7 +115,99 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mine/flashcards.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mine/csv_to_xls.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="memtest_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab 13" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\mkot2\PycharmProjects\pythonProject\Lab 13\memtest_1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="process_ie" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mine" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mine/process_ie.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="wersja_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab 13" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lab 13/wersja_1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="wersja_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab 13" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lab 13/wersja_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -129,7 +233,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.flashcards" />
+        <item itemvalue="Python.memtest_1" />
+        <item itemvalue="Python.wersja_2" />
+        <item itemvalue="Python.wersja_1" />
+        <item itemvalue="Python.process_ie" />
+        <item itemvalue="Python.csv_to_xls" />
       </list>
     </recent_temporary>
   </component>
@@ -165,7 +273,18 @@
       <workItem from="1734389658808" duration="1199000" />
       <workItem from="1734481233322" duration="1491000" />
       <workItem from="1734483690998" duration="2435000" />
-      <workItem from="1735600382515" duration="3077000" />
+      <workItem from="1735600382515" duration="3354000" />
+      <workItem from="1735956272041" duration="1005000" />
+      <workItem from="1736333811476" duration="11514000" />
+      <workItem from="1736353467798" duration="250000" />
+      <workItem from="1736354368458" duration="82000" />
+      <workItem from="1736427406643" duration="2019000" />
+      <workItem from="1736451221638" duration="10363000" />
+      <workItem from="1736804461500" duration="4761000" />
+      <workItem from="1736809613166" duration="616000" />
+      <workItem from="1736869461916" duration="218000" />
+      <workItem from="1737031505366" duration="1075000" />
+      <workItem from="1737391011454" duration="14738000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -263,7 +382,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734482730219</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Task 1 problem with drugs from pathway being added, Task 2 in progress">
+      <option name="closed" value="true" />
+      <created>1735603748586</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1735603748586</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,15 +409,21 @@
     <MESSAGE value="Lab 7" />
     <MESSAGE value="Lab 8, 9" />
     <MESSAGE value="Lab 10&#10;Przepraszam za spóźnienie, dużo pracy mi się zebrało :(" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lab 10&#10;Przepraszam za spóźnienie, dużo pracy mi się zebrało :(" />
+    <MESSAGE value="Task 1 problem with drugs from pathway being added, Task 2 in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Task 1 problem with drugs from pathway being added, Task 2 in progress" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject$plik.coverage" NAME="plik Coverage Results" MODIFIED="1730759068686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 4" />
+    <SUITE FILE_PATH="coverage/pythonProject$ipynb_to_py.coverage" NAME="ipynb_to_py Coverage Results" MODIFIED="1730758154700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 4" />
+    <SUITE FILE_PATH="coverage/pythonProject$flashcards.coverage" NAME="flashcards Coverage Results" MODIFIED="1735956480590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mine" />
+    <SUITE FILE_PATH="coverage/pythonProject$activity_log.coverage" NAME="activity_log Coverage Results" MODIFIED="1728943148722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 2" />
+    <SUITE FILE_PATH="coverage/pythonProject$process_ie.coverage" NAME="process_ie Coverage Results" MODIFIED="1737396708292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mine" />
     <SUITE FILE_PATH="coverage/pythonProject$convert.coverage" NAME="convert Coverage Results" MODIFIED="1730759197173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 4" />
     <SUITE FILE_PATH="coverage/pythonProject$MikolajKot2.coverage" NAME="MikolajKot2 Coverage Results" MODIFIED="1728943140191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 2" />
-    <SUITE FILE_PATH="coverage/pythonProject$ipynb_to_py.coverage" NAME="ipynb_to_py Coverage Results" MODIFIED="1730758154700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 4" />
-    <SUITE FILE_PATH="coverage/pythonProject$activity_log.coverage" NAME="activity_log Coverage Results" MODIFIED="1728943148722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 2" />
-    <SUITE FILE_PATH="coverage/pythonProject$flashcards.coverage" NAME="flashcards Coverage Results" MODIFIED="1734482346079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mine" />
+    <SUITE FILE_PATH="coverage/pythonProject$wersja_2.coverage" NAME="wersja_2 Coverage Results" MODIFIED="1737416348380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 13" />
+    <SUITE FILE_PATH="coverage/pythonProject$mem_test.coverage" NAME="mem_test Coverage Results" MODIFIED="1737418642661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 13" />
+    <SUITE FILE_PATH="coverage/pythonProject$csv_to_xls.coverage" NAME="csv_to_xls Coverage Results" MODIFIED="1737391294788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mine" />
     <SUITE FILE_PATH="coverage/pythonProject$estimate_pi.coverage" NAME="estimate_pi Coverage Results" MODIFIED="1730752606475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 1" />
+    <SUITE FILE_PATH="coverage/pythonProject$wersja_1.coverage" NAME="wersja_1 Coverage Results" MODIFIED="1737416307398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab 13" />
   </component>
 </project>
