@@ -1,0 +1,9 @@
+pandas
+matplotlib
+adjustText
+networkx
+fastapi
+uvicorn
+pytest
+pytest-asyncio
+httpx
