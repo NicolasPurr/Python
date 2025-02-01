@@ -1,4 +1,5 @@
 # drugbank/__init__.py
+from .api import *
 from .parsers import *
-from .analysis import *
-from .visualisation import *
+from .simulator import *
+from .visualisers import *

@@ -1,6 +1,6 @@
 # tests/test_parsers.py
 import pytest
-from Project.drugbank.parsers import *
+from drugbank.parsers import *
 
 @pytest.fixture
 def empty_xml():
