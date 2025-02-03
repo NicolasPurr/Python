@@ -1,14 +1,22 @@
-from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from .parsers import parse_pathways
+from lxml import etree
 
 app = FastAPI()
 
-with open("data/drugbank_partial.xml", "r", encoding="utf-8") as file:
-    xml_content = file.read()
+relative_file_path = "data/drugbank_partial.xml"
 
-pathways, drug_pathway_counts = parse_pathways(xml_content)
+try:
+    # Parse the input XML.
+    tree = etree.parse(relative_file_path)
+    root = tree.getroot()
+except etree.ParseError as e:
+    print(f"Error parsing XML: {e}")
+    exit(1)
+
+# Get pathways and pathway counts
+pathways, drug_pathway_counts = parse_pathways(root)
 
 class DrugRequest(BaseModel):
     drug_id: str

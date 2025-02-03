@@ -4,11 +4,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import igraph as ig
 from adjustText import adjust_text
+import matplotlib.cm as cm
 
 
 def visualise_synonyms(drug_id, df):
     """ Creates and draws a graph of synonyms for a given DrugBank ID """
     synonyms = df.loc[df["DrugBank_ID"] == drug_id, "Synonyms"].values
+    filename = f"data/{drug_id}_synonym_graph.png"
 
     graph = nx.Graph()
     graph.add_node(drug_id, color='#FFD700', size=800)  # Root node
@@ -21,7 +23,7 @@ def visualise_synonyms(drug_id, df):
     colors = [graph.nodes[n]["color"] for n in graph.nodes]
     sizes = [graph.nodes[n]["size"] for n in graph.nodes]
 
-    # Calculate the bounds based on node positions (as before)
+    # Calculate the bounds based on node positions
     x_values = [pos[node][0] for node in pos]
     y_values = [pos[node][1] for node in pos]
     x_range = max(x_values) - min(x_values)
@@ -38,7 +40,7 @@ def visualise_synonyms(drug_id, df):
     max_label_width_actual = 0
     max_label_height = 0
 
-    # Draw labels and calculate their bounding box size
+    # Draw labels and calculate their bounding box sizes
     for label, position in pos.items():
         colour = 'black'
         if label not in synonyms:
@@ -65,54 +67,90 @@ def visualise_synonyms(drug_id, df):
     plt.margins(0.1)
     plt.axis("off")
     plt.title(f"Synonym graph for {drug_id}", fontsize=12, fontweight="bold")
-
+    plt.savefig(filename, dpi=300)
     plt.show()
+    print(f"Pathway graph saved as {filename}")
 
 
-def visualise_drug_pathways(df):
-    """Draws a bipartite graph from a data frame with improved layout, labels, and edges."""
+def visualise_drug_pathways(df, filename="data/pathway_graph.png"):
+    """Draws a bipartite graph, where:
+       - each drug (DrugBank_ID) node is assigned a unique color,
+       - all edges from a drug node are colored with that same unique color,
+       - all pathway nodes are a single solid color.
+    """
     graph = nx.Graph()
 
-    graph.add_nodes_from(df["Drug"].unique(), bipartite=0)  # Drugs as part of bipartite set 0
-    graph.add_nodes_from(df["Pathway"].unique(), bipartite=1)  # Pathways as part of bipartite set 1
-    graph.add_edges_from([(row["Drug"], row["Pathway"]) for _, row in df.iterrows()])
+    # Extract unique drugs and pathways
+    drugs = df["DrugBank_ID"].unique()
+    pathways = df["Pathway"].unique()
+    drug_set = set(drugs)
 
-    # Create the bipartite layout for visualization
+    graph.add_nodes_from(drugs, bipartite=0)  # Drug nodes
+    graph.add_nodes_from(pathways, bipartite=1)  # Pathway nodes
+
+    pathway_color = "lightblue"
+
+    # Use a colormap which can produce 20 distinct colors
+    cmap = cm.get_cmap('tab20', len(drugs))
+    drug_colors = {drug: cmap(i / (len(drugs) - 1)) for i, drug in enumerate(drugs)}
+
+    # Build edges
+    for _, row in df.iterrows():
+        drug, pathway = row["DrugBank_ID"], row["Pathway"]
+        graph.add_edge(drug, pathway)
+
+    # Now compute edge colors by looking at each edge and choosing the color of the drug node.
+    edge_colors = []
+    for edge in graph.edges():
+        if edge[0] in drug_set:
+            edge_colors.append(drug_colors[edge[0]])
+        elif edge[1] in drug_set:
+            edge_colors.append(drug_colors[edge[1]])
+        else:
+            edge_colors.append("gray")
+
     plt.figure(figsize=(12, 8))
-    pos = nx.bipartite_layout(graph, df["Drug"].unique())  # Positions of drugs and pathways
+    pos = nx.bipartite_layout(graph, drugs)
 
-    nx.draw_networkx_edges(graph, pos, alpha=0.5, edge_color='gray', width=1.5, style='solid')
-
-    # Get labels, sizes, and colors for nodes
-    node_labels = {node: node for node in graph.nodes()}
-    node_sizes = [800 if node in df["Drug"].unique() else 500 for node in graph.nodes()]
-    node_colors = ['gold' if node in df["Drug"].unique() else 'lightblue' for node in graph.nodes()]
+    node_sizes = [800 if node in drug_set else 500 for node in graph.nodes()]
+    node_colors = [drug_colors[node] if node in drug_set else pathway_color for node in graph.nodes()]
 
     nx.draw_networkx_nodes(graph, pos, node_size=node_sizes, node_color=node_colors, edgecolors='black')
+    nx.draw_networkx_edges(graph, pos, edge_color=edge_colors, width=1.5, alpha=0.7)
 
+    # Add labels and adjust them to prevent overlap
     label_texts = [
-        plt.text(pos[node][0], pos[node][1], node_labels[node], fontsize=8, fontweight="bold", ha='center', va='center',
-                 bbox=dict(facecolor="white", edgecolor='black', boxstyle="round,pad=0.3")) for node in graph.nodes()]
-    adjust_text(label_texts, only_move={'points': 'y', 'text': 'xy'}, arrowprops=dict(arrowstyle="->", color='red'))
+        plt.text(pos[node][0], pos[node][1], node, fontsize=8, fontweight="bold", ha='center', va='center',
+                 bbox=dict(facecolor="white", edgecolor='black', boxstyle="round,pad=0.3"))
+        for node in graph.nodes()
+    ]
+    adjust_text(label_texts, only_move={'points': 'y', 'text': 'xy'},
+                arrowprops=dict(arrowstyle="->", color='red'))
 
+    # Final touches
     plt.title("Drug-Pathway Interaction Graph", fontsize=12, fontweight="bold")
     plt.margins(0.1)
     plt.axis("off")
+    plt.savefig(filename, dpi=300)
     plt.show()
+    print(f"Pathway graph saved as {filename}")
 
 
-def drug_pathways_histogram(drug_pathway_counts):
-    """Plots histogram of drugs and their interactions."""
+def drug_pathways_histogram(drug_pathway_counts, filename="data/drug_pathway_histogram.png"):
+    """Plots a histogram of drugs and their pathways."""
     plt.figure(figsize=(10, 6))
     plt.hist(drug_pathway_counts.values(), bins=20, align='mid', edgecolor='black')
     plt.xlabel("Number of Pathways")
     plt.ylabel("Number of Drugs")
     plt.title("Distribution of Interactions between Pathways and Drugs")
+    plt.savefig(filename, dpi=300)
     plt.show()
 
+    print(f"Pathway graph saved as {filename}")
 
-def visualise_cellular_locations(cellular_locations):
-    """Draws a pie chart showing the frequency of cellular locations."""
+
+def visualise_cellular_locations(cellular_locations, filename="data/cellular_locations.png"):
+    """Draws a pie chart showing the frequency of targets existing in given cellular locations."""
     # Filter out entries where the value is None, empty, or 0
     filtered_cellular_locations = {key: value for key, value in cellular_locations.items() if value not in [None, "", 0]}
 
@@ -128,12 +166,12 @@ def visualise_cellular_locations(cellular_locations):
         return
 
     plt.figure(figsize=(20, 8))
-    color_palette = plt.cm.tab20.colors
+    color_palette = cm.tab20.colors
 
     if len(filtered_cellular_locations) <= len(color_palette):
         colors = color_palette[:len(filtered_cellular_locations)]
     else:
-        colors = plt.cm.Paired.colors * (len(filtered_cellular_locations) // len(plt.cm.Paired.colors) + 1)
+        colors = cm.Paired.colors * (len(filtered_cellular_locations) // len(cm.Paired.colors) + 1)
         colors = colors[:len(filtered_cellular_locations)]
 
     # Compose the plot
@@ -150,19 +188,19 @@ def visualise_cellular_locations(cellular_locations):
         wedges,
         filtered_cellular_locations.keys(),
         title="Cellular Location",
-        loc="center left",  # Moves the legend to the left
+        loc="center left",
         bbox_to_anchor=(-0.1, 0.5),  # Adjusts legend position to be left of the chart
         fontsize=9
     )
 
-    # Draw
     plt.title("Cellular Locations of Targets", fontsize=16)
     plt.axis("equal")
+    plt.savefig(filename, dpi=300)
     plt.show()
+    print(f"Pathway graph saved as {filename}")
 
 
-
-def visualise_statuses(status_counts):
+def visualise_statuses(status_counts, filename="data/approval_statuses.png"):
     """Draws a pie chart showing the distribution of drug approval statuses."""
     plt.figure(figsize=(10, 6))
     plt.pie(
@@ -173,7 +211,9 @@ def visualise_statuses(status_counts):
         colors=plt.cm.Paired.colors
     )
     plt.title("Distribution of Drug Approval Statuses")
+    plt.savefig(filename, dpi=300)
     plt.show()
+    print(f"Pathway graph saved as {filename}")
 
 
 def visualise_genes(df, gene, filename="data/gene_tree.png"):
@@ -209,7 +249,7 @@ def visualise_genes(df, gene, filename="data/gene_tree.png"):
     # This dictionary will store, for each interacting drug, the aggregated node index.
     drug_to_aggregated = {}
 
-    # For each interacting drug (from our aggregated counts), add a drug node and its aggregated product node.
+    # For each interacting drug, add a drug node and its aggregated product node.
     for drug, count in drug_counts.items():
         # Assign a color (cycling through the palette).
         if drug not in drug_color_mapping:
@@ -227,14 +267,13 @@ def visualise_genes(df, gene, filename="data/gene_tree.png"):
         # Edge from gene to drug.
         g.add_edge(gene_idx, drug_idx)
 
-        # Create an aggregated product node (one per drug), with label as the count.
+        # Create an aggregated product node, with label as the count.
         agg_node_name = f"{drug}_products"
         agg_label = str(count)
         agg_vertex = g.add_vertex(name=agg_node_name, label=agg_label, type="agg", color=color)
         agg_idx = agg_vertex.index
         drug_to_aggregated[drug] = agg_idx
 
-        # Edge from drug to aggregated node.
         g.add_edge(drug_idx, agg_idx)
 
     # --- Compute custom layout ---
@@ -244,7 +283,7 @@ def visualise_genes(df, gene, filename="data/gene_tree.png"):
     # (CENTRE) Place the gene at the center.
 
     # (I LAYER) Place interacting drug nodes on a circle around the gene.
-    radius = 300  # radius for drug nodes (first layer)
+    radius = 300
     drug_nodes = [v for v in g.vs if v["type"] == "drug"]
     n_drugs = len(drug_nodes)
 
@@ -263,7 +302,7 @@ def visualise_genes(df, gene, filename="data/gene_tree.png"):
         angle = np.arctan2(y_drug, x_drug)
         pos[agg_idx] = (radius_agg * np.cos(angle), radius_agg * np.sin(angle))
 
-    # --- Plot the graph using matplotlib ---
+    # --- Plot the graph ---
     fig, ax = plt.subplots(figsize=(20, 20))
     ax.set_aspect("equal")
     ax.axis("off")
@@ -273,7 +312,7 @@ def visualise_genes(df, gene, filename="data/gene_tree.png"):
         src, tgt = edge.tuple
         x1, y1 = pos[src]
         x2, y2 = pos[tgt]
-        # If the edge goes from a drug to an aggregated node, use the drug's color.
+        # Use the drug node's color.
         if g.vs[src]["type"] == "drug" and g.vs[tgt]["type"] == "agg":
             edge_color = g.vs[src]["color"]
         else:
@@ -300,7 +339,7 @@ def visualise_genes(df, gene, filename="data/gene_tree.png"):
                 if angle > 90 or angle < -90:
                     angle += 180
             else:
-                angle = 0  # gene remains unrotated
+                angle = 0
             # Truncate long labels
             max_label_length = 400
             label_text = v["label"]

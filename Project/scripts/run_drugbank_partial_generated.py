@@ -1,6 +1,7 @@
 # scripts/run_drugbank_partial.py
 import sys
 import os
+import random
 from lxml import etree
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -8,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from drugbank.parsers import *
 from drugbank.visualisers import *
 
-relative_file_path = "data/drugbank_partial.xml"
+relative_file_path = "data/drugbank_partial_generated.xml"
 
 if __name__ == "__main__":
     try:
@@ -27,11 +28,11 @@ if __name__ == "__main__":
     # Task 2
     print(f"\nParsing synonyms...")
     synonyms = parse_synonyms(root)
-    print(f"Generated example graphs for drugs: DB00001, DB00046, DB0098, DB0108")
-    visualise_synonyms("DB00001", synonyms)
-    visualise_synonyms("DB00046", synonyms)
-    visualise_synonyms("DB00098", synonyms)
-    visualise_synonyms("DB00108", synonyms)
+    i = random.randint(1, 100)
+    j = random.randint(1, 100)
+    print(f"Generated example graphs for drug IDs: {i}, {j}")
+    visualise_synonyms(f"{i}", synonyms)
+    visualise_synonyms(f"{j}", synonyms)
 
     # Task 3
     print(f"\nParsing products...")
@@ -50,7 +51,6 @@ if __name__ == "__main__":
     for drug, count in drug_pathway_count.items():
         print(f"Drug: {drug}, Pathway Count: {count}")
     drug_pathways_histogram(drug_pathway_count)
-
 
     # Task 7
     print(f"\nParsing targets...")
