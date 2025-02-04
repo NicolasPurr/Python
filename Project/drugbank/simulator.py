@@ -88,17 +88,16 @@ def set_primary_drugbank_id(drug, primary_value=None):
                 del other.attrib["primary"]
 
 
-def main():
-    input_file = "data/drugbank_partial.xml"  # Adjust the path to your input XML file.
+def main(total_drugs, total_consecutive_ids):
+    input_file = "data/drugbank_partial.xml"
     output_file = "data/drugbank_partial_generated.xml"
 
-    # Parse the input XML.
     tree = etree.parse(input_file)
     root = tree.getroot()
 
     # Use the namespace mapping to find all <drug> elements.
-    NS = {"db": NS_URL}
-    drugs = root.findall(".//db:drug", namespaces=NS)
+    ns = {"db": NS_URL}
+    drugs = root.findall(".//db:drug", namespaces=ns)
     if not drugs:
         print("No <drug> elements found in the input file.")
         return
@@ -112,38 +111,37 @@ def main():
     # Use the first drug as a structure template.
     template_drug = drugs[0]
 
+    print("Generating fake drugs...")
     fake_drugs = []
-    total_drugs = 20000
-    # For the first 19900 drugs, the primary drugbank-id will be consecutive numbers.
-    # The remaining 100 will use random values as before.
-    for i in range(1000):
+    for i in range(total_drugs):
         new_drug = generate_element(template_drug, "", leaf_values, repeat_counts)
-        if i < 19900:
+        if i < total_consecutive_ids:
             set_primary_drugbank_id(new_drug, primary_value=i + 1)
         else:
             set_primary_drugbank_id(new_drug)  # Use the generated/random primary id.
         fake_drugs.append(new_drug)
+        if (i + 1) % 100 == 0:
+            print(f"Generated {i}/20000")
 
     # Create a root element for the output.
-    # Declare the default namespace and additional namespace for xsi.
     nsmap = {None: NS_URL, "xsi": "http://www.w3.org/2001/XMLSchema-instance"}
     new_root = etree.Element(f"{{{NS_URL}}}drugbank", nsmap=nsmap)
-    # Set additional attributes on the root.
     new_root.attrib["version"] = "5.1"
     new_root.attrib["exported-on"] = date.today().isoformat()  # e.g., "2024-03-14"
     new_root.attrib[
         "{http://www.w3.org/2001/XMLSchema-instance}schemaLocation"
     ] = f"{NS_URL} {NS_URL}/docs/drugbank.xsd"
 
-    # Append the generated drugs.
+    i = 0
+    print("Appending...")
     for drug in fake_drugs:
         new_root.append(drug)
+        i = i + 1
+    if i % 100 == 0:
+        print(f"Appended {i}/20000")
 
-    # Write out the new XML tree.
+    print("Writing...")
     new_tree = etree.ElementTree(new_root)
     new_tree.write(output_file, pretty_print=True, xml_declaration=True, encoding="UTF-8")
     print(f"Generated {len(fake_drugs)} fake drugs in '{output_file}'.")
-
-
-if __name__ == "__main__":
-    main()
+    return

@@ -83,7 +83,16 @@ if __name__ == "__main__":
     print(f"\nExample: F2")
     print(genes[genes["Gene"] == "F2"])
 
-    print(f"\nExample graph: ICAM1. Open the generated image to view in full size")
+    print(f"\nExample graph: ICAM1. Open the generated image to view in full size:")
     visualise_genes(genes, "ICAM1")
 
     # Task 12
+    if targets is not None:
+        print(f"The targets have already been parsed. Reusing...")
+    else:
+        print(f"Parsing targets...")
+        targets, cellular_locations = parse_targets(root)
+
+    print(f"Example amino acid counts for DB00002:")
+    aminos = get_target_amino_acid_count_for_drug("DB00002", targets)
+    visualise_drug_target_amino(aminos, "DB00002")

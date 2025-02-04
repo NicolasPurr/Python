@@ -7,8 +7,8 @@ Davida Wisharta z Wydziału Informatyki i Nauk Biologicznych Uniwersytetu Albert
 Kanadzie. Łączy dane z dziedziny chemii, biochemii, genetyki, farmakologii i
 farmakokinetyki.
 
-Plik *drugbank_partial.xml* zawiera dane dla 100 leków.  Projekt zaliczeniowy polega na przeanalizowaniu zawartości okrojonej wersji bazy i
-utworzeniu różnego rodzaju tabel i wykresów podsumowujących zawartość bazy leków.
+Plik *drugbank_partial.xml* zawiera dane dla 100 leków.  Projekt zaliczeniowy polega na przeanalizowaniu zawartości 
+okrojonej wersji bazy i utworzeniu różnego rodzaju tabel i wykresów podsumowujących zawartość bazy leków.
 
 ## Zadania
 
@@ -20,8 +20,8 @@ występuje, wskazania, mechanizm działania oraz informacje z jakimi pokarmami d
 wchodzi w interakcje. (4 pkt)
 
 
-#### Pliki
-- drugbank/parsers.py/parse_drugs
+#### Funkcje
+- drugbank/parsers.py/parse_drugs()
 
 ### 2 Synonimy
 
@@ -32,8 +32,8 @@ zadbać o czytelność generowanego rysunku. (4 pkt)
 
 #### Pliki
 
-- drugbank/parsers.py/parse_synonyms
-- drugbank/visualisation.py/draw_synonym_graph
+- drugbank/parsers.py/parse_synonyms()
+- drugbank/visualisation.py/draw_synonym_graph()
 
 ### 3 Produkty
 
@@ -45,6 +45,8 @@ produkt. (4 pkt)
 
 #### Pliki
 
+- drugbank/parsers.py/parse_synonyms()
+- drugbank/visualisation.py/draw_synonym_graph()
 
 ### 4 Szlaki 
 
@@ -53,11 +55,11 @@ rodzajów, tj. sygnałowych, metabolicznych, itd., z jakimi jakikolwiek lek wcho
 Podać całkowitą liczbę tych szlaków. (4 pkt)
 
 
-**całkowita liczba szlaków dla *drugbank_partial.xml*:** 12
+**całkowita liczba szlaków dla *drugbank_partial.xml*:** 28
 
 #### Pliki
 
-### 5 Graf lek$<->$szlak
+### 5 Graf lek $\longleftrightarrow$ szlak
 
 > Dla każdego szlaku sygnałowego/metabolicznego w bazie danych podać leki, które
 wchodzą z nim w interakcje. Wyniki należy przedstawić w postaci ramki danych jak i w
@@ -95,9 +97,9 @@ w komórce. (4 pkt)
 
 ### 9 Status zatwierdzenia leku
 
-> Utworzyć ramkę danych, pokazującą ile leków zostało zatwierdzonych, wycofanych, ile jest w fazie eksperymentalnej (ang. *experimental* lub *investigational*) i dopuszczonych w
-leczeniu zwierząt. Przedstawić te dane na wykresie kołowym. Podać liczbę zatwierdzonych
-leków, które nie zostały wycofane. (4 pkt)
+> Utworzyć ramkę danych, pokazującą ile leków zostało zatwierdzonych, wycofanych, ile jest w fazie eksperymentalnej 
+(ang. *experimental* lub *investigational*) i dopuszczonych w leczeniu zwierząt. Przedstawić te dane na wykresie
+kołowym. Podać liczbę zatwierdzonych leków, które nie zostały wycofane. (4 pkt)
 
 #### Pliki
 
@@ -107,7 +109,7 @@ leków, które nie zostały wycofane. (4 pkt)
 
 #### Pliki
 
-### 11 Gene $->$ interacting-drug $->$ product
+### 11 Gene $\longrightarrow$ interacting-drug $\longrightarrow$ product
 > Opracować według własnego pomysłu graficzną prezentację zawierającą informacje o
 konkretnym genie lub genach, substancjach leczniczych, które z tym genem/genami
 wchodzą w interakcje, oraz produktach farmaceutycznych, które zawierają daną substancję
@@ -128,7 +130,15 @@ zautomatyzowane pobieranie danych przez program. Na przykład baza danych GeneCa
 wprost tego zabrania, co zostało na czerwono podkreślone na tej stronie. Przykładowe bazy
 danych to: [UniProt](https://www.uniprot.org/), [Small Molecule Pathway Database](https://smpdb.ca/), [The Human Protein Atlas](https://www.proteinatlas.org/). (7 pkt)
 
+Zdecydowałem się skorzystać z bazy danych [UniProt](https://www.uniprot.org/), wykorzystując *Selenium* oraz
+*BeautifulSoup* do zbierania i parsowania danych. Mój program dla danego id leku, wykorzystując ramkę danych wygenerowaną
+przy pomocy funkcji **parse_targets** z [zadania 7](README.md#7-targety), wyszukuje nazwę danego targetu w bazie danych
+i pobiera liczbę aminokwasów. Następnie przygotowuje graf podobny do tego z 
+[zadania 11](README.md#11-gene-longrightarrow-interacting-drug-longrightarrow-product), pokazując zależność drug 
+$\longrightarrow$ target $\longrightarrow$ aa_count.
+
 #### Pliki
+
 
 ### 13 Generowanie 20000 fałszywych leków
 

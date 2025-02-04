@@ -47,7 +47,7 @@ def visualise_synonyms(drug_id, df):
             colour = 'gold'
 
         text = plt.text(position[0], position[1], label, fontsize=7, fontweight="bold",
-                            ha='center', va='center', color=colour,
+                            ha='center', va='center', color='black',
                             bbox=dict(facecolor="white", edgecolor=colour, boxstyle="round,pad=0.3"))
         label_texts.append(text)
 
@@ -69,7 +69,7 @@ def visualise_synonyms(drug_id, df):
     plt.title(f"Synonym graph for {drug_id}", fontsize=12, fontweight="bold")
     plt.savefig(filename, dpi=300)
     plt.show()
-    print(f"Pathway graph saved as {filename}")
+    print(f"Pathway graph saved as {filename}. Please open the file manually if the image does not display correctly.")
 
 
 def visualise_drug_pathways(df, filename="data/pathway_graph.png"):
@@ -133,7 +133,7 @@ def visualise_drug_pathways(df, filename="data/pathway_graph.png"):
     plt.axis("off")
     plt.savefig(filename, dpi=300)
     plt.show()
-    print(f"Pathway graph saved as {filename}")
+    print(f"Pathway graph saved as {filename}. Please open the file manually if the image does not display correctly.")
 
 
 def drug_pathways_histogram(drug_pathway_counts, filename="data/drug_pathway_histogram.png"):
@@ -146,7 +146,7 @@ def drug_pathways_histogram(drug_pathway_counts, filename="data/drug_pathway_his
     plt.savefig(filename, dpi=300)
     plt.show()
 
-    print(f"Pathway graph saved as {filename}")
+    print(f"Pathway graph saved as {filename}. Please open the file manually if the image does not display correctly.")
 
 
 def visualise_cellular_locations(cellular_locations, filename="data/cellular_locations.png"):
@@ -197,7 +197,7 @@ def visualise_cellular_locations(cellular_locations, filename="data/cellular_loc
     plt.axis("equal")
     plt.savefig(filename, dpi=300)
     plt.show()
-    print(f"Pathway graph saved as {filename}")
+    print(f"Pathway graph saved as {filename}. Please open the file manually if the image does not display correctly.")
 
 
 def visualise_statuses(status_counts, filename="data/approval_statuses.png"):
@@ -213,7 +213,7 @@ def visualise_statuses(status_counts, filename="data/approval_statuses.png"):
     plt.title("Distribution of Drug Approval Statuses")
     plt.savefig(filename, dpi=300)
     plt.show()
-    print(f"Pathway graph saved as {filename}")
+    print(f"Pathway graph saved as {filename}. Please open the file manually if the image does not display correctly.")
 
 
 def visualise_genes(df, gene, filename="data/gene_tree.png"):
@@ -372,4 +372,150 @@ def visualise_genes(df, gene, filename="data/gene_tree.png"):
     plt.tight_layout()
     plt.savefig(filename, dpi=300)
     plt.show()
-    print(f"Graph saved as {filename}")
+    print(f"Graph saved as {filename}. Please open the file manually if the image does not display correctly.")
+
+
+def visualise_drug_target_amino(df, drug_id, filename="data/drug_target_tree.png"):
+    """
+    Draws a graph showing targets for a given drug and their corresponding amino acid counts.
+
+    Parameters:
+    - df: DataFrame containing "DrugBank_ID", "Target_Name", and "Amino_Acid_Count".
+    - drug_id: The DrugBank ID of the drug to visualize.
+    - filename: Path to save the generated graph image.
+    """
+    # Filter the DataFrame for the specified drug.
+    drug_df = df[df["DrugBank_ID"] == drug_id]
+    if drug_df.empty:
+        print(f"No data found for DrugBank_ID {drug_id}")
+        return
+
+    # --- Compute aggregated counts ---
+    # Each target has one corresponding amino acid count.
+    target_counts = drug_df.set_index("Target_Name")["Amino_Acid_Count"].to_dict()
+
+    # --- Create a graph ---
+    g = ig.Graph(directed=True)
+    node_indices = {}
+
+    # Add the central drug node.
+    drug_color = "#d62728"  # Red
+    drug_vertex = g.add_vertex(name=drug_id, label=drug_id, type="drug", color=drug_color)
+    drug_idx = drug_vertex.index
+    node_indices[drug_id] = drug_idx
+
+    # --- Set up colors for targets ---
+    target_colors = [
+        "#1f77b4", "#ff7f0e", "#2ca02c", "#9467bd",
+        "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
+    ]
+    target_color_mapping = {}
+    color_counter = 0
+
+    # This dictionary will store, for each target, the amino acid count node index.
+    target_to_aa = {}
+
+    # For each target, add a target node and its amino acid count node.
+    for target, aa_count in target_counts.items():
+        # Assign a color (cycling through the palette).
+        if target not in target_color_mapping:
+            color = target_colors[color_counter % len(target_colors)]
+            target_color_mapping[target] = color
+            color_counter += 1
+        else:
+            color = target_color_mapping[target]
+
+        # Add target node.
+        target_vertex = g.add_vertex(name=target, label=target, type="target", color=color)
+        target_idx = target_vertex.index
+        node_indices[target] = target_idx
+
+        # Edge from drug to target.
+        g.add_edge(drug_idx, target_idx)
+
+        # Create an amino acid count node.
+        aa_node_name = f"{target}_AA"
+        aa_label = f"{aa_count} AA"
+        aa_vertex = g.add_vertex(name=aa_node_name, label=aa_label, type="aa", color=color)
+        aa_idx = aa_vertex.index
+        target_to_aa[target] = aa_idx
+
+        # Edge from target to amino acid count.
+        g.add_edge(target_idx, aa_idx)
+
+    # --- Compute custom layout ---
+    pos = {drug_idx: (0, 0)}
+
+    # (CENTRE) Place the drug at the center.
+
+    # (I LAYER) Place targets on a circle around the drug.
+    radius = 300
+    target_nodes = [v for v in g.vs if v["type"] == "target"]
+    n_targets = len(target_nodes)
+
+    for i, v in enumerate(target_nodes):
+        angle = 2 * np.pi * i / max(n_targets, 1)  # Avoid division by zero
+        x = radius * np.cos(angle)
+        y = radius * np.sin(angle)
+        pos[v.index] = (x, y)
+
+    # (II LAYER) Place amino acid count nodes (outer layer) around targets.
+    radius_aa = 500
+    for target, aa_idx in target_to_aa.items():
+        # Get the angle from the corresponding target node.
+        target_idx = node_indices[target]
+        x_target, y_target = pos[target_idx]
+        angle = np.arctan2(y_target, x_target)
+        pos[aa_idx] = (radius_aa * np.cos(angle), radius_aa * np.sin(angle))
+
+    # --- Plot the graph ---
+    fig, ax = plt.subplots(figsize=(20, 20))
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+    # Draw edges.
+    for edge in g.es:
+        src, tgt = edge.tuple
+        x1, y1 = pos[src]
+        x2, y2 = pos[tgt]
+        # Use the target node's color.
+        if g.vs[src]["type"] == "target" and g.vs[tgt]["type"] == "aa":
+            edge_color = g.vs[src]["color"]
+        else:
+            edge_color = "gray"
+        ax.plot([x1, x2], [y1, y2], color=edge_color, zorder=1)
+
+    # --- Draw nodes ---
+    for v in g.vs:
+        x, y = pos[v.index]
+        node_type = v["type"]
+        node_color = v["color"]
+        if node_type in ["drug", "target"]:
+            # Compute the angle to avoid upside-down text.
+            angle = np.degrees(np.arctan2(y, x))
+            if angle > 90 or angle < -90:
+                angle += 180
+
+            ax.text(
+                x, y, v["label"],
+                ha="center", va="center",
+                fontsize=14, zorder=2,
+                rotation=angle,
+                bbox=dict(facecolor="white", edgecolor=node_color, boxstyle="round,pad=0.3")
+            )
+
+        elif node_type == "aa":
+            # Draw a text label for the amino acid count.
+            ax.text(
+                x, y, v["label"],
+                ha="center", va="center",
+                fontsize=12, zorder=3,
+                bbox=dict(facecolor="white", edgecolor=node_color, boxstyle="round,pad=0.3")
+            )
+
+    plt.title(f"Targets of drug {drug_id} and their amino acid counts")
+    plt.tight_layout()
+    plt.savefig(filename, dpi=300)
+    plt.show()
+    print(f"Graph saved as {filename}. Please open the file manually if the image does not display correctly.")
+
