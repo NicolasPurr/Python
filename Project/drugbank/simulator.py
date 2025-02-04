@@ -121,7 +121,7 @@ def main(total_drugs, total_consecutive_ids):
             set_primary_drugbank_id(new_drug)  # Use the generated/random primary id.
         fake_drugs.append(new_drug)
         if (i + 1) % 100 == 0:
-            print(f"Generated {i}/20000")
+            print(f"Generated {i + 1}/20000")
 
     # Create a root element for the output.
     nsmap = {None: NS_URL, "xsi": "http://www.w3.org/2001/XMLSchema-instance"}

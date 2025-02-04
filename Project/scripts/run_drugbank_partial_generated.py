@@ -30,8 +30,8 @@ if __name__ == "__main__":
     # Task 13.2
     print(f"\nParsing synonyms...")
     synonyms = parse_synonyms(root)
-    i = random.randint(1, TOTAL_CONSECUTIVE_IDS)
-    j = random.randint(1, TOTAL_CONSECUTIVE_IDS)
+    i = 42
+    j = 69
     print(f"Generated example graphs for drug IDs: {i}, {j}")
     visualise_synonyms(f"{i}", synonyms)
     visualise_synonyms(f"{j}", synonyms)
@@ -82,20 +82,23 @@ if __name__ == "__main__":
     pd.set_option('display.width', None)
     pd.set_option('display.max_colwidth', None)
     print(genes)
-    print(f"\nExample: F2")
+    print(f"Example: F2")
     print(genes[genes["Gene"] == "F2"])
 
-    print(f"\nExample graph: ICAM1. Open the generated image to view in full size")
+    print(f"Example graph: ICAM1. Open the generated image to view in full size")
     visualise_genes(genes, "ICAM1")
 
     # Task 13.12
-    i = random.randint(1, TOTAL_CONSECUTIVE_IDS)
+    i = 27
     if targets is not None:
         print(f"The targets have already been parsed. Reusing...")
     else:
         print(f"Parsing targets...")
         targets, cellular_locations = parse_targets(root)
 
-    print(f"Example amino acid counts for DB00002:")
+    print(f"Example: amino acid counts for {i}:")
     aminos = get_target_amino_acid_count_for_drug(i, targets)
+
+    print(aminos)
+
     visualise_drug_target_amino(aminos, i)

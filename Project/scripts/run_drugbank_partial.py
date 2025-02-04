@@ -80,10 +80,10 @@ if __name__ == "__main__":
     pd.set_option('display.width', None)
     pd.set_option('display.max_colwidth', None)
     print(genes)
-    print(f"\nExample: F2")
+    print(f"Example: F2")
     print(genes[genes["Gene"] == "F2"])
 
-    print(f"\nExample graph: ICAM1. Open the generated image to view in full size:")
+    print(f"Example graph: ICAM1. Open the generated image to view in full size:")
     visualise_genes(genes, "ICAM1")
 
     # Task 12
@@ -95,4 +95,5 @@ if __name__ == "__main__":
 
     print(f"Example amino acid counts for DB00002:")
     aminos = get_target_amino_acid_count_for_drug("DB00002", targets)
+    print(aminos)
     visualise_drug_target_amino(aminos, "DB00002")

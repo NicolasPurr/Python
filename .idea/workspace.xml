@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="104ee75d-5aec-46cb-9543-2710ac022bb0" name="Changes" comment="Changed parse_pathways&#10;Done 13&#10;Slightly changed parsing and visualisation">
+    <list default="true" id="104ee75d-5aec-46cb-9543-2710ac022bb0" name="Changes" comment="Corrected errors&#10;Finished Task 12&#10;Added new pytests for parsers&#10;Changed simulation of fake drugs&#10;Finished scripts for demonstrative runs&#10;Added comments">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab 1/estimate_pi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Labs/Lab 1/estimate_pi.py" afterDir="false" />
@@ -34,17 +34,13 @@
       <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/monday_motivation_mail/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/monday_motivation_mail/quotes.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/numberguessinggame.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Project/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/drugbank/analysis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/drugbank/parsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/drugbank/parsers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/drugbank/simulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/drugbank/simulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/drugbank/visualisers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/drugbank/visualisers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/drugs.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/parse_data.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial_generated.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial_generated.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/run_simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/scripts/run_simulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/tests/test_parsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/tests/test_parsers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +261,7 @@
       <workItem from="1738287015187" duration="114000" />
       <workItem from="1738287135128" duration="15971000" />
       <workItem from="1738321990371" duration="64011000" />
-      <workItem from="1738626216942" duration="4433000" />
+      <workItem from="1738626216942" duration="5708000" />
     </task>
     <task id="LOCAL-00001" summary="Zrobione do 10 i 14/15 (fastAPI). Duży progres. Poprawić wizualne elementy niektóre, testy do FastAPI.">
       <option name="closed" value="true" />
@@ -299,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738548713845</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Corrected errors&#10;Finished Task 12&#10;Added new pytests for parsers&#10;Changed simulation of fake drugs&#10;Finished scripts for demonstrative runs&#10;Added comments">
+      <option name="closed" value="true" />
+      <created>1738631349568</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738631349568</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +313,8 @@
     <MESSAGE value="Zrobione do 10 i 14/15 (fastAPI). Duży progres. Poprawić wizualne elementy niektóre, testy do FastAPI." />
     <MESSAGE value="Change parse_pathways&#10;Do 12&#10;Do 13" />
     <MESSAGE value="Changed parse_pathways&#10;Done 13&#10;Slightly changed parsing and visualisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed parse_pathways&#10;Done 13&#10;Slightly changed parsing and visualisation" />
+    <MESSAGE value="Corrected errors&#10;Finished Task 12&#10;Added new pytests for parsers&#10;Changed simulation of fake drugs&#10;Finished scripts for demonstrative runs&#10;Added comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected errors&#10;Finished Task 12&#10;Added new pytests for parsers&#10;Changed simulation of fake drugs&#10;Finished scripts for demonstrative runs&#10;Added comments" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_parsers_test_parse_products.coverage" NAME="pytest for test_parsers.test_parse_products Coverage Results" MODIFIED="1738299989683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />
