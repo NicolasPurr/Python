@@ -1,7 +1,22 @@
 # tests/test_parsers.py
 import pytest
 from lxml import etree
-from drugbank.parsers import *
+
+from drugbank.parsers import (
+    parse_polypeptide,
+    parse_targets,
+    parse_products,
+    parse_pathways,
+    parse_synonyms,
+    parse_genatlas_id,
+    parse_drugs,
+    parse_approval_status,
+    parse_drug_interactions,
+    get_target_amino_acid_count_for_drug,
+    get_amino_acid_count_from_html,
+    get_amino_acid_count_for_target,
+    pd
+)
 
 
 @pytest.fixture
@@ -296,4 +311,3 @@ def test_get_target_amino_acid_count_for_drug(monkeypatch):
     result_df = get_target_amino_acid_count_for_drug("DB00001", df_targets)
     assert result_df.loc[result_df["Target_Name"] == "C1QA", "Amino_Acid_Count"].iloc[0] == 245
     assert result_df.loc[result_df["Target_Name"] == "EGFR", "Amino_Acid_Count"].iloc[0] == 1210
-

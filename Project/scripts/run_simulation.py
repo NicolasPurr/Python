@@ -3,7 +3,7 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from drugbank.simulator import *
+from drugbank.simulator import main
 
 TOTAL_DRUGS=20000
 TOTAL_CONSECUTIVE_IDS=19900

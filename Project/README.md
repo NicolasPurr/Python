@@ -146,8 +146,8 @@ konkretnego genu, czy wszystkich genów jednocześnie pozostawiamy Państwa decy
 Przy dokonywaniu wyboru należy kierować się czytelnością i atrakcyjnością prezentacji
 graficznej. (7 pkt)
 
-To zadanie zajęło mi bardzo dużo czasu, ale jestem z niego bardzo dumny.
-Niestety nie udało mi się wykonać tego parsowania, używając iterparse.
+To zadanie zajęło mi bardzo dużo czasu, ale jestem z niego bardzo dumny. Konieczne
+może być otworzenie wyeksportowanego obrazka.
 
 #### Funkcje
 
@@ -193,9 +193,13 @@ kolumnach wartości wylosowane spośród wartości istniejących 100 leków. Zap
 pliku drugbank_partial_and_generated.xml. Przeprowadź analizę według punktów 1-12
 testowej bazy. (7 pkt)
 
+Niestety analiza punktów 4, 5, 6, 11 i 12 nie udała mi się :/
+
 #### Pliki
 
 - drugbank/simulator.py
+- drugbank/iter_parsers.py
+- scripts/run_drugbank_partial_generated.py
 
 ### 14 Testy jednostkowe
 
@@ -229,9 +233,9 @@ Dostarczona nam okrojona wersja bazy danych **DrugBank**
 
 ---
 
-#### drugbank_partial_generated.xml
+#### Pliki wygenerowane
 
-Plik z losowo wygenerowanymi fałszywymi lekami.
+Pliki wygenerowane przez skrypty.
 
 ---
 
@@ -362,8 +366,9 @@ pytest tests/test_visualisers.py
 python scripts/run_drugbank_partial.py
 ```
 
-### Zadanie 13
+### Zadanie 13 i 14
 ```angular2html
+pytest tests/test_simulator.py
 python scripts/run_simulation.py
 python scripts/run_drugbank_partial_generated.py
 ```

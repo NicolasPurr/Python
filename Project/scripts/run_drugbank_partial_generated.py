@@ -1,104 +1,147 @@
-# scripts/run_drugbank_partial.py
+# scripts/run_drugbank_partial_generated.py
 import sys
 import os
-import random
-from lxml import etree
 
+# Add the project root to sys.path so that we can import our modules.
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from drugbank.parsers import *
-from drugbank.visualisers import *
+from lxml import etree
+import pandas as pd
+
+from drugbank.iter_parsers import (
+    parse_drug,
+    parse_synonyms_for_drug,
+    parse_products_for_drug,
+    parse_targets_for_drug,
+    parse_approval_status_for_drug,
+    parse_drug_interactions_for_drug,
+)
+from drugbank.visualisers import (
+    visualise_synonyms,
+    visualise_cellular_locations,
+    visualise_statuses,
+)
+
+# Global accumulators for parsed data.
+drugs_data = []             # List of drug details dictionaries.
+synonyms_data = {}          # {drug_id: [synonym, ...]}
+products_data = {}          # {drug_id: [product, ...]}
+pathways_data = []          # List of tuples: (drug_id, pathway)
+drug_pathway_count = {}     # {drug_id: count}
+targets_data = []           # List of target dictionaries.
+cellular_locations = {}     # {cellular_location: count}
+approval_status_count = {}  # {status: count}
+drug_interactions = []      # List of interaction dictionaries.
+genes_data = []             # List of gene dictionaries.
 
 relative_file_path = "data/drugbank_partial_generated.xml"
-TOTAL_CONSECUTIVE_IDS=19900
 
-# Task 13
-if __name__ == "__main__":
-    try:
-        # Parse the input XML.
-        tree = etree.parse(relative_file_path)
-        root = tree.getroot()
-    except etree.ParseError as e:
-        print(f"Error parsing XML: {e}")
-        exit(1)
 
-    # Task 13.1
-    print(f"Parsing drugs...")
-    drugs = parse_drugs(root)
-    print(drugs)
+def main():
+    absolute_path = os.path.abspath(relative_file_path)
+    if not os.path.exists(absolute_path):
+        print(f"File not found: {absolute_path}")
+        sys.exit(1)
 
-    # Task 13.2
-    print(f"\nParsing synonyms...")
-    synonyms = parse_synonyms(root)
-    i = 42
-    j = 69
-    print(f"Generated example graphs for drug IDs: {i}, {j}")
-    visualise_synonyms(f"{i}", synonyms)
-    visualise_synonyms(f"{j}", synonyms)
+    print("Processing the XML file with iterparse...")
 
-    # Task 13.3
-    print(f"\nParsing products...")
-    products = parse_products(root)
-    print(products)
+    ns = "http://www.drugbank.ca"
+    context = etree.iterparse(absolute_path, events=("end",), tag=f"{{{ns}}}drug")
+    approved_not_withdrawn_count = 0
 
-    # Task 13.4
-    print(f"\nParsing pathways...")
-    pathways, drug_pathway_count = parse_pathways(root)
-    print(f"Number of different pathways: {len(pathways)}")
+    for event, drug_elem in context:
+        # Task 1: Drug details.
+        details = parse_drug(drug_elem)
+        if details:
+            drugs_data.append(details)
 
-    # Task 13.5
-    visualise_drug_pathways(pathways)
+        # Task 2: Synonyms.
+        syn = parse_synonyms_for_drug(drug_elem)
+        if syn:
+            drug_id = syn["DrugBank_ID"]
+            if drug_id in synonyms_data:
+                synonyms_data[drug_id] = list(set(synonyms_data[drug_id] + syn["Synonyms"]))
+            else:
+                synonyms_data[drug_id] = syn["Synonyms"]
 
-    # Task 13.6
-    for drug, count in drug_pathway_count.items():
-        print(f"Drug: {drug}, Pathway Count: {count}")
-    drug_pathways_histogram(drug_pathway_count)
+        # Task 3: Products.
+        prod = parse_products_for_drug(drug_elem)
+        if prod:
+            products_data[prod["DrugBank_ID"]] = prod["Products"]
 
-    # Task 13.7
-    print(f"\nParsing targets...")
-    targets, cellular_locations = parse_targets(root)
-    print(targets)
-    print(f"Example target: Lepirudin")
-    print(targets[targets["Drug"] == "Lepirudin"])
+        # Task 7 & 8: Targets and cellular locations.
+        targs = parse_targets_for_drug(drug_elem)
+        if targs:
+            targets_data.extend(targs["Targets"])
+            for target in targs["Targets"]:
+                cl = target.get("Cellular_Location", "Unknown")
+                cellular_locations[cl] = cellular_locations.get(cl, 0) + 1
 
-    # Task 13.8
+        # Task 9: Approval statuses.
+        app = parse_approval_status_for_drug(drug_elem)
+        if app:
+            for status, count in app["Status"].items():
+                approval_status_count[status] = approval_status_count.get(status, 0) + count
+            if "Approved" in app["Status"] and "Withdrawn" not in app["Status"]:
+                approved_not_withdrawn_count += 1
+
+        # Task 10: Drug interactions.
+        inter = parse_drug_interactions_for_drug(drug_elem)
+        if inter:
+            drug_interactions.extend(inter["Interactions"])
+
+        # Clear element from memory.
+        drug_elem.clear()
+        while drug_elem.getprevious() is not None:
+            del drug_elem.getparent()[0]
+
+    print("Parsing complete.")
+    print(f"Parsed {len(drugs_data)} drugs.")
+
+    # Task 1: Drug Details.
+    print("\nDrug Details:")
+    df_drugs = pd.DataFrame(drugs_data)
+    print(df_drugs)
+
+    # Task 2: Synonyms.
+    print("\nSynonyms:")
+    df_syn = pd.DataFrame([{"DrugBank_ID": k, "Synonyms": v} for k, v in synonyms_data.items()])
+    print(df_syn)
+    for drug_id in ["DB00001", "DB00046", "DB00098", "DB00108"]:
+        if drug_id in synonyms_data:
+            print(f"Visualising synonyms for {drug_id}...")
+            visualise_synonyms(drug_id, df_syn)
+        else:
+            print(f"No synonyms found for {drug_id}.")
+
+    # Task 3: Products.
+    print("\nProducts:")
+    df_products = pd.DataFrame(
+        [{"DrugBank_ID": did, "Products": prods} for did, prods in products_data.items()]
+    )
+    print(df_products)
+
+    # Task 7 & 8: Targets and cellular locations.
+    print("\nTargets:")
+    df_targets = pd.DataFrame(targets_data)
+    print(df_targets)
+    print("\nExample target: Lepirudin")
+    if "Drug" in df_targets.columns:
+        print(df_targets[df_targets["Drug"] == "Lepirudin"])
+    else:
+        print("No 'Drug' column in targets DataFrame.")
     visualise_cellular_locations(cellular_locations)
 
-    # Task 13.9
-    print(f"\nParsing approval statuses...")
-    status, approved_not_withdrawn, status_count = parse_approval_status(root)
-    print(f"Number of drugs which have been approved and not withdrawn: {approved_not_withdrawn}")
-    visualise_statuses(status_count)
+    # Task 9: Approval statuses.
+    print("\nApproval Statuses:")
+    print(f"Number of drugs approved and not withdrawn: {approved_not_withdrawn_count}")
+    visualise_statuses(approval_status_count)
 
-    # Task 13.10
-    print(f"\nParsing drug interactions...")
-    drug_interactions = parse_drug_interactions(root)
-    print(drug_interactions)
+    # Task 10: Drug Interactions.
+    print("\nDrug Interactions:")
+    df_interactions = pd.DataFrame(drug_interactions)
+    print(df_interactions)
 
-    # Task 13.11
-    print(f"\nParsing gene interactions...")
-    genes = parse_genes(root)
-    pd.set_option('display.max_columns', None)
-    pd.set_option('display.width', None)
-    pd.set_option('display.max_colwidth', None)
-    print(genes)
-    print(f"Example: F2")
-    print(genes[genes["Gene"] == "F2"])
 
-    print(f"Example graph: ICAM1. Open the generated image to view in full size")
-    visualise_genes(genes, "ICAM1")
-
-    # Task 13.12
-    i = 27
-    if targets is not None:
-        print(f"The targets have already been parsed. Reusing...")
-    else:
-        print(f"Parsing targets...")
-        targets, cellular_locations = parse_targets(root)
-
-    print(f"Example: amino acid counts for {i}:")
-    aminos = get_target_amino_acid_count_for_drug(i, targets)
-
-    print(aminos)
-
-    visualise_drug_target_amino(aminos, i)
+if __name__ == "__main__":
+    main()

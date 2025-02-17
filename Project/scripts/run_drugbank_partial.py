@@ -5,8 +5,28 @@ from lxml import etree
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from drugbank.parsers import *
-from drugbank.visualisers import *
+from drugbank.parsers import (
+    parse_drugs,
+    parse_synonyms,
+    parse_pathways,
+    parse_genes,
+    parse_products,
+    parse_targets,
+    parse_drug_interactions,
+    parse_approval_status,
+    get_target_amino_acid_count_for_drug,
+    pd
+)
+
+from drugbank.visualisers import (
+    visualise_synonyms,
+    visualise_drug_pathways,
+    visualise_genes,
+    visualise_statuses,
+    visualise_drug_target_amino,
+    visualise_cellular_locations,
+    drug_pathways_histogram
+)
 
 relative_file_path = "data/drugbank_partial.xml"
 

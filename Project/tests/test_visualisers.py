@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 from unittest.mock import patch
+
 from drugbank.visualisers import (
     visualise_synonyms,
     visualise_drug_pathways,

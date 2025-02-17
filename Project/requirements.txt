@@ -9,3 +9,9 @@ pytest-asyncio
 httpx
 anytree
 graphviz
+selenium
+webdriver_manager
+beautifulsoup4
+lxml
+numpy
+python-igraph
