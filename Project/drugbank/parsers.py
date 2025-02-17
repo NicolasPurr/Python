@@ -29,6 +29,8 @@ def parse_drugs(root):
             name = drug.find(f"{NS_URL}name").text \
                 if drug.find(f"{NS_URL}name") is not None else None
             drug_type = drug.get("type")
+            state = drug.find(f"{NS_URL}state").text \
+                if drug.find(f"{NS_URL}state") is not None else None
             description = drug.find(f"{NS_URL}description").text \
                 if drug.find(f"{NS_URL}description") is not None else None
             dosage_form = drug.find(f"{NS_URL}dosages/{NS_URL}dosage/{NS_URL}form").text \
@@ -48,6 +50,7 @@ def parse_drugs(root):
                 "DrugBank_ID": drug_id,
                 "Name": name,
                 "Type": drug_type,
+                "State": state,
                 "Description": description,
                 "Dosage Form": dosage_form,
                 "Indications": indications,
@@ -291,7 +294,6 @@ def parse_drug_interactions(root):
 
     return df
 
-
 def parse_genes(root):
     """Extracts drug-gene interactions and their related drug products from XML."""
     data = []
@@ -463,6 +465,10 @@ def get_target_amino_acid_count_for_drug(drug_id, targets):
     Returns:
         DataFrame["DrugBank_ID", "Target_Name", "Amino_Acid_count"]
     """
+    if targets.empty:
+        print(f"Cannot get amino acid count for no targets!")
+        return None
+
     print(f"Finding amino acid counts for targets for DrugBank_ID {drug_id}:")
     data = []
     for target_name in targets.loc[targets["DrugBank_ID"] == drug_id, "Target_Name"].values:

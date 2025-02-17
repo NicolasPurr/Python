@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="104ee75d-5aec-46cb-9543-2710ac022bb0" name="Changes" comment="Corrected errors&#10;Finished Task 12&#10;Added new pytests for parsers&#10;Changed simulation of fake drugs&#10;Finished scripts for demonstrative runs&#10;Added comments">
+    <list default="true" id="104ee75d-5aec-46cb-9543-2710ac022bb0" name="Changes" comment="Corrected scripts and made some smaller adjustments to functions">
+      <change afterPath="$PROJECT_DIR$/Project/data/drugbank_partial_generated.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project/drugbank/iter_parsers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab 1/estimate_pi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Labs/Lab 1/estimate_pi.py" afterDir="false" />
@@ -34,13 +36,15 @@
       <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/monday_motivation_mail/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/monday_motivation_mail/quotes.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Mine/100daysofpython/numberguessinggame.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Project/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/drugbank/analysis.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/drugbank/parsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/drugbank/parsers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/drugbank/simulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/drugbank/simulator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/drugbank/visualisers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/drugbank/visualisers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/drugs.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/parse_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial_generated.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/scripts/run_drugbank_partial_generated.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/scripts/run_simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/scripts/run_simulation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/tests/test_visualisers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/tests/test_visualisers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +98,7 @@
     &quot;Python tests.pytest for test_visualisers.test_gene_graph.executor&quot;: &quot;Run&quot;,
     &quot;Python.parse_data.executor&quot;: &quot;Run&quot;,
     &quot;Python.run_api.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_drugbank_partial (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.simulator.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -126,8 +131,8 @@
       <recent name="C:\Users\mkot2\PycharmProjects\pythonProject\Project" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.simulator">
-    <configuration name="run_api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.run_drugbank_partial (1)">
+    <configuration name="run_drugbank_partial (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -141,7 +146,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project/scripts/run_api.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project/scripts/run_drugbank_partial.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -234,11 +239,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.run_drugbank_partial (1)" />
         <item itemvalue="Python.simulator" />
         <item itemvalue="Python tests.pytest for test_visualisers.test_gene_graph" />
         <item itemvalue="Python.run_drugbank_partial" />
         <item itemvalue="Python tests.pytest for test_visualisers.test_draw_synonym_graph" />
-        <item itemvalue="Python.run_api" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +266,16 @@
       <workItem from="1738287015187" duration="114000" />
       <workItem from="1738287135128" duration="15971000" />
       <workItem from="1738321990371" duration="64011000" />
-      <workItem from="1738626216942" duration="5708000" />
+      <workItem from="1738626216942" duration="6741000" />
+      <workItem from="1738684917613" duration="4875000" />
+      <workItem from="1739215671308" duration="3551000" />
+      <workItem from="1739270751927" duration="227000" />
+      <workItem from="1739270986867" duration="6696000" />
+      <workItem from="1739279019747" duration="8805000" />
+      <workItem from="1739393020804" duration="3490000" />
+      <workItem from="1739707635187" duration="608000" />
+      <workItem from="1739708314594" duration="10025000" />
+      <workItem from="1739789518866" duration="11282000" />
     </task>
     <task id="LOCAL-00001" summary="Zrobione do 10 i 14/15 (fastAPI). Duży progres. Poprawić wizualne elementy niektóre, testy do FastAPI.">
       <option name="closed" value="true" />
@@ -303,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738631349568</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Corrected scripts and made some smaller adjustments to functions">
+      <option name="closed" value="true" />
+      <created>1738632580719</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738632580719</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,13 +336,25 @@
     <MESSAGE value="Change parse_pathways&#10;Do 12&#10;Do 13" />
     <MESSAGE value="Changed parse_pathways&#10;Done 13&#10;Slightly changed parsing and visualisation" />
     <MESSAGE value="Corrected errors&#10;Finished Task 12&#10;Added new pytests for parsers&#10;Changed simulation of fake drugs&#10;Finished scripts for demonstrative runs&#10;Added comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected errors&#10;Finished Task 12&#10;Added new pytests for parsers&#10;Changed simulation of fake drugs&#10;Finished scripts for demonstrative runs&#10;Added comments" />
+    <MESSAGE value="Corrected scripts and made some smaller adjustments to functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected scripts and made some smaller adjustments to functions" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Project/scripts/run_api.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_parsers_test_parse_products.coverage" NAME="pytest for test_parsers.test_parse_products Coverage Results" MODIFIED="1738299989683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_visualisation_test_plot_circular.coverage" NAME="pytest for test_visualisation.test_plot_circular Coverage Results" MODIFIED="1738300174861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_api_test_get_pathway_count_success.coverage" NAME="pytest for test_api.test_get_pathway_count_success Coverage Results" MODIFIED="1738415099083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_api_test_get_pathway_count.coverage" NAME="pytest for test_api.test_get_pathway_count Coverage Results" MODIFIED="1738302514370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />
+    <SUITE FILE_PATH="coverage/pythonProject$run_drugbank_partial__1_.coverage" NAME="run_drugbank_partial (1) Coverage Results" MODIFIED="1739716178475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/scripts" />
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_visualisation_test_plot_histogram.coverage" NAME="pytest for test_visualisation.test_plot_histogram Coverage Results" MODIFIED="1738300170889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_visualisers_test_gene_graph.coverage" NAME="pytest for test_visualisers.test_gene_graph Coverage Results" MODIFIED="1738421380475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />
     <SUITE FILE_PATH="coverage/pythonProject$pytest_for_test_parsers_test_parse_drugs.coverage" NAME="pytest for test_parsers.test_parse_drugs Coverage Results" MODIFIED="1738299414425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Project/tests" />

@@ -91,7 +91,7 @@ def visualise_drug_pathways(df, filename="data/pathway_graph.png"):
     pathway_color = "lightblue"
 
     # Use a colormap which can produce 20 distinct colors
-    cmap = cm.get_cmap('tab20', len(drugs))
+    cmap = plt.get_cmap('tab20', len(drugs))
     drug_colors = {drug: cmap(i / (len(drugs) - 1)) for i, drug in enumerate(drugs)}
 
     # Build edges
@@ -384,6 +384,10 @@ def visualise_drug_target_amino(df, drug_id, filename="data/drug_target_tree.png
     - drug_id: The DrugBank ID of the drug to visualize.
     - filename: Path to save the generated graph image.
     """
+    if df.empty:
+        print(f"No data found for DrugBank_ID {drug_id}")
+        return
+
     # Filter the DataFrame for the specified drug.
     drug_df = df[df["DrugBank_ID"] == drug_id]
     if drug_df.empty:

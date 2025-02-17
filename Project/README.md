@@ -19,9 +19,12 @@ identyfikator leku w bazie DrugBank, nazwę leku, jego typ, opis, postać w jaki
 występuje, wskazania, mechanizm działania oraz informacje z jakimi pokarmami dany lek
 wchodzi w interakcje. (4 pkt)
 
+Nigdzie nie znalazłem tagu odnoszącego się do "typu". Kolumna ta pozostanie wypełniona wartością None.
 
 #### Funkcje
-- drugbank/parsers.py/parse_drugs()
+
+- drugbank/parsers.py
+  - parse_drugs
 
 ### 2 Synonimy
 
@@ -30,10 +33,12 @@ wszystkich synonimach pod jakimi dany lek występuje. Napisać funkcję, która 
 DrugBank ID utworzy i wyrysuje graf synonimów za pomocą biblioteki NetworkX. Należy
 zadbać o czytelność generowanego rysunku. (4 pkt)
 
-#### Pliki
+#### Funkcje
 
-- drugbank/parsers.py/parse_synonyms()
-- drugbank/visualisation.py/draw_synonym_graph()
+- drugbank/parsers.py
+  - parse_synonyms
+- drugbank/visualisation.py
+  - draw_synonym_graph
 
 ### 3 Produkty
 
@@ -43,10 +48,10 @@ producencie, kod w narodowym rejestrze USA (ang. *National Drug Code*), postać 
 produkt występuje, sposób aplikacji, informacje o dawce, kraju i agencji rejestrującej
 produkt. (4 pkt)
 
-#### Pliki
+#### Funkcje
 
-- drugbank/parsers.py/parse_synonyms()
-- drugbank/visualisation.py/draw_synonym_graph()
+- drugbank/parsers.py
+  - parse_products
 
 ### 4 Szlaki 
 
@@ -57,7 +62,10 @@ Podać całkowitą liczbę tych szlaków. (4 pkt)
 
 **całkowita liczba szlaków dla *drugbank_partial.xml*:** 28
 
-#### Pliki
+#### Funkcje
+
+- drugbank/parsers.py
+  - parse_pathways
 
 ### 5 Graf lek $\longleftrightarrow$ szlak
 
@@ -68,7 +76,10 @@ dwudzielny, gdzie dwa rodzaje wierzchołków to szlaki sygnałowe i leki, a posz
 krawędzie reprezentują interakcję danego leku z danym szlakiem sygnałowym. Należy
 zadbać o czytelność i atrakcyjność prezentacji graficznej. (4 pkt)
 
-#### Pliki
+#### Funkcje
+
+- drugbank/visualisers.py:
+  - visualise_drug_pathways
 
 ### 6 Histogram: liczba szlaków dla leku
 
@@ -76,7 +87,10 @@ zadbać o czytelność i atrakcyjność prezentacji graficznej. (4 pkt)
 interakcje. Przedstawić wyniki w postaci histogramu z odpowiednio opisanymi osiami.
 (4 pkt)
 
-#### Pliki
+#### Funkcje
+
+- drugbank/visualisers.py:
+  - drug_pathways_histogram
 
 ### 7 Targety
 
@@ -87,13 +101,19 @@ np. Swiss-Prot), identyfikator w zewnętrznej bazie danych, nazwę polipeptydu, 
 kodującego polipeptyd, identyfikator genu GenAtlas ID, numer chromosomu, umiejscowienie
 w komórce. (4 pkt)
 
-#### Pliki
+#### Funkcje
+
+- drugbank/parsers.py:
+  - parse_targets
 
 ### 8 Procentowe występowanie targetów
 
 > Utworzyć wykres kołowy prezentujący procentowe występowanie targetów w różnych częściach komórki. (4 pkt)
 
-#### Pliki
+#### Funkcje
+
+- drugbank/visualisers.py:
+  - visualise_cellular_locations
 
 ### 9 Status zatwierdzenia leku
 
@@ -101,13 +121,21 @@ w komórce. (4 pkt)
 (ang. *experimental* lub *investigational*) i dopuszczonych w leczeniu zwierząt. Przedstawić te dane na wykresie
 kołowym. Podać liczbę zatwierdzonych leków, które nie zostały wycofane. (4 pkt)
 
-#### Pliki
+#### Funkcje
+
+- drugbank/parsers.py:
+  - parse_approval_status
+- drugbank/visualisers.py:
+  - visualise_statuses
 
 ### 10 Potencjalne interakcje
 
 > Utworzyć ramkę danych zawierającą informacje dotyczące potencjalnych interakcji danego leku z innymi lekami. (4 pkt)
 
-#### Pliki
+#### Funkcje
+
+- drugbank/parsers.py:
+  - parse_drug_interactions
 
 ### 11 Gene $\longrightarrow$ interacting-drug $\longrightarrow$ product
 > Opracować według własnego pomysłu graficzną prezentację zawierającą informacje o
@@ -118,9 +146,15 @@ konkretnego genu, czy wszystkich genów jednocześnie pozostawiamy Państwa decy
 Przy dokonywaniu wyboru należy kierować się czytelnością i atrakcyjnością prezentacji
 graficznej. (7 pkt)
 
-To zadanie zajęło mi bardzo dużo czasu.
+To zadanie zajęło mi bardzo dużo czasu, ale jestem z niego bardzo dumny.
+Niestety nie udało mi się wykonać tego parsowania, używając iterparse.
 
-#### Pliki
+#### Funkcje
+
+- drugbank/parsers.py:
+  - parse_genes
+- drugbank/visualisers.py:
+  - visualise_genes
 
 ### 12 Własna analiza i prezentacja danych
 > Zaproponować własną analizę i prezentację danych dotyczących leków. Można w tym
@@ -133,12 +167,23 @@ danych to: [UniProt](https://www.uniprot.org/), [Small Molecule Pathway Database
 Zdecydowałem się skorzystać z bazy danych [UniProt](https://www.uniprot.org/), wykorzystując *Selenium* oraz
 *BeautifulSoup* do zbierania i parsowania danych. Mój program dla danego id leku, wykorzystując ramkę danych wygenerowaną
 przy pomocy funkcji **parse_targets** z [zadania 7](README.md#7-targety), wyszukuje nazwę danego targetu w bazie danych
-i pobiera liczbę aminokwasów. Następnie przygotowuje graf podobny do tego z 
+i pobiera stronę w html w celu sparsowania i otrzymania liczby aminokwasów. Następnie przygotowuje graf podobny do tego z 
 [zadania 11](README.md#11-gene-longrightarrow-interacting-drug-longrightarrow-product), pokazując zależność drug 
 $\longrightarrow$ target $\longrightarrow$ aa_count.
 
-#### Pliki
+Zapewne dałoby się to zarequestować, stosując *external identifier* odpowiadający UniProt dla danego *drugbank-id*, 
+ale lubię Selenium.
 
+#### Funkcje
+
+- drugbank/parsers.py:
+  - get_amino_acid_count_for_target
+  - get_target_amino_acid_count_for_drug
+  - get_amino_acid_count_from_html
+  - get_uniprot_cards_page
+- drugbank/visualisers.py:
+  - visualise_genes
+  - visualise_drug_target_amino
 
 ### 13 Generowanie 20000 fałszywych leków
 
@@ -149,6 +194,8 @@ pliku drugbank_partial_and_generated.xml. Przeprowadź analizę według punktów
 testowej bazy. (7 pkt)
 
 #### Pliki
+
+- drugbank/simulator.py
 
 ### 14 Testy jednostkowe
 
@@ -163,15 +210,15 @@ Wszystkie testy znajdują się w folderze [tests](https://github.com/NicolasPurr
 - tests/test_simulation.py
 - tests/test_visualisation.py
 
-### 15 Serwer API 
+### 15 Serwer API
 
 > Zrealizować punkt 6 tak, aby możliwe było wysłanie id leku na Twój serwer, który zwróci wynik w odpowiedzi (skorzystaj z fastapi i uvicorn; wystarczy zademonstrowanie przesłania
 danych metodą POST, przez Execute w dokumentacji) (4 pkt)
 
 #### Pliki
 
-- drugbank/api.py - plik z kodem
-- scripts/run_api.py - skrypt do inicjalizacji serwera
+- drugbank/api.py
+- scripts/run_api.py
 
 ## Opis folderów i plików
 
@@ -180,13 +227,19 @@ danych metodą POST, przez Execute w dokumentacji) (4 pkt)
 #### drugbank_partial.xml
 Dostarczona nam okrojona wersja bazy danych **DrugBank**
 
+---
+
 #### drugbank_partial_generated.xml
 
 Plik z losowo wygenerowanymi fałszywymi lekami.
 
+---
+
 #### gene_tree.png
 
 Grafika przedstawiająca odpowiedź na zadanie nr **10**, czyli graf genu, interakcji tego genu z lekami i produkty zawierajace dany lek.
+
+---
 
 ### /drugbank/
 
@@ -194,21 +247,39 @@ Grafika przedstawiająca odpowiedź na zadanie nr **10**, czyli graf genu, inter
 
 Sprawia, że folder staje się paczką.
 
+---
+
 #### api.py
 
 Zawiera kod obsługujący serwer do wysyłania requestów o liczbę szlaków dla ID danego leku.
+
+---
+
+#### iter_parsers.py
+
+Zawiera inne podejście do parsowania pliku w sposób iteracyjny, co polepsza modularność
+i umożliwia parsowanie większych plików. Niestety z powodu późnego wymyślenia
+tego podejścia, nie udało mi się zaimplementować wszystkich parserów.
+
+---
 
 #### parsers.py
 
 Zawiera funkcje stworzone do przetwarzania pliku wejściowego po sparsowaniu z pliku *.xml* do **etree**.
 
+---
+
 #### simulator.py
 
 Zawiera funkcje stworzone do generowania fałszywcyh leków.
 
+---
+
 #### visualisers.py
 
 Zawiera funkcje stworzone do wizualizacji przetworzonych danych.
+
+---
 
 ### /scripts/
 
@@ -216,11 +287,15 @@ Zawiera funkcje stworzone do wizualizacji przetworzonych danych.
 
 Uruchamia serwer.
 
+---
+
 #### run_drugbank_partial.py 
 
 [Zadania 1 - 12](README.md#zadania)
 
 Wykonuje analizę i prezentację danych zawartych w pliku *drugbank_partial.xml*.
+
+---
 
 #### run_drugbank_partial_generated.py
 
@@ -228,22 +303,73 @@ Wykonuje analizę i prezentację danych zawartych w pliku *drugbank_partial.xml*
 
 Wykonuje analizę i prezentację danych zawartych w pliku *drugbank_partial_generated.xml*.
 
+---
+
 #### run_simulation.py
 
 [Zadanie 13](README.md#13-generowanie-20000-fałszywych-leków)
 
 Uruchamia generowanie 20000 fałszywych leków.
 
+---
+
 ### /tests/
 
 [Zadanie 14](README.md#14-testy-jednostkowe)
+
 
 #### __init__.py
 
 Sprawia, że folder jest paczką.
 
+---
+
 #### test_api.py
 
 [Zadanie 15](README.md#15-serwer-api)
 
-Testuje funckjonalność serwera.
+Testuje funkcjonalność serwera.
+
+---
+
+#### test_parsers.py
+
+Testuje funkcjonalność funkcji parsujących dane.
+
+
+---
+
+#### test_simulator.py
+
+Testuje funkcjonalność generatora plików.
+
+---
+
+#### test_visualisers.py
+
+Testuje funkcjonalność funkcji prezentujących dane.
+
+---
+
+## Proponowany sposób testowania projektu
+
+Będąc w głównym folderze projektu, proponuję wywołać następujące instrukcje:
+
+### Zadania 1-12 i 14
+```angular2html
+pytest tests/test_parsers.py
+pytest tests/test_visualisers.py
+python scripts/run_drugbank_partial.py
+```
+
+### Zadanie 13
+```angular2html
+python scripts/run_simulation.py
+python scripts/run_drugbank_partial_generated.py
+```
+
+### Zadanie 14 i 15
+```angular2html
+pytest tests/test_api.py
+python scripts/run_api.py
+```

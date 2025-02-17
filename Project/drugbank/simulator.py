@@ -137,8 +137,8 @@ def main(total_drugs, total_consecutive_ids):
     for drug in fake_drugs:
         new_root.append(drug)
         i = i + 1
-    if i % 100 == 0:
-        print(f"Appended {i}/20000")
+        if i % 100 == 0:
+            print(f"Appended {i}/20000")
 
     print("Writing...")
     new_tree = etree.ElementTree(new_root)
